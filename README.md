@@ -4,7 +4,7 @@
 
 ---
 
-## 🔹 Basic Commands
+##  Basic Commands
 
 ### 1. Connection and Database
 - Show available databases:
