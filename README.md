@@ -1,11 +1,10 @@
-# MongoDB_Commands
-MongoDB_syntax  
+#  MongoDB Commands & Syntax
 
 ---
 
-# MongoDB Basic Commands
+## 🔹 Basic Commands
 
-## 1. Connection and Database
+### 1. Connection and Database
 - Show available databases:
 ```js
 show dbs
@@ -23,7 +22,7 @@ show collections
 
 ---
 
-## 2. Data Insertion
+### 2. Data Insertion
 - Insert a single document:
 ```js
 db.collection.insertOne({name: "Gabriel", age: 25})
@@ -36,7 +35,7 @@ db.collection.insertMany([{name: "Ana"}, {name: "Carlos"}])
 
 ---
 
-## 3. Queries (Find)
+### 3. Queries (Find)
 - Find all documents:
 ```js
 db.collection.find()
@@ -54,7 +53,7 @@ db.collection.findOne({name: "Gabriel"})
 
 ---
 
-## 4. Update
+### 4. Update
 - Update one document:
 ```js
 db.collection.updateOne(
@@ -73,7 +72,7 @@ db.collection.updateMany(
 
 ---
 
-## 5. Deletion
+### 5. Deletion
 - Delete one document:
 ```js
 db.collection.deleteOne({name: "Carlos"})
@@ -86,7 +85,7 @@ db.collection.deleteMany({status: "inactive"})
 
 ---
 
-## 6. Administrative Commands
+### 6. Administrative Commands
 - View database statistics:
 ```js
 db.stats()
@@ -96,78 +95,101 @@ db.stats()
 ```js
 db.runCommand({ping: 1})
 ```
-MongoDB Query Operators & Advanced Commands
 
-1. Query Operators
- Comparison
-js
+---
+
+## 🔎 Query Operators
+
+### Comparison
+```js
 {age: {$gte: 18}}          // greater or equal
 {age: {$in: [18, 21, 25]}} // in list
- Logical
-js
+```
+
+### Logical
+```js
 {$and: [{age: {$gt: 18}}, {status: "active"}]}
 {$or: [{city: "SP"}, {city: "RJ"}]}
- Element
-js
+```
+
+### Element
+```js
 {field: {$exists: true}}
 {field: {$type: "string"}}
-2.  Aggregation Framework
-Pipeline Example
-js
+```
+
+---
+
+##  Aggregation Framework
+
+### Pipeline Example
+```js
 db.collection.aggregate([
   {$match: {status: "active"}},
   {$group: {_id: "$city", total: {$sum: 1}}},
   {$sort: {total: -1}}
 ])
-Useful Stages
-$match → filter documents
+```
 
-$group → group and aggregate
+### Useful Stages
+- `$match` → filter documents  
+- `$group` → group and aggregate  
+- `$sort` → order results  
+- `$project` → reshape documents  
+- `$lookup` → perform joins  
+- `$unwind` → expand arrays  
 
-$sort → order results
+---
 
-$project → reshape documents
-
-$lookup → perform joins
-
-$unwind → expand arrays
-
-3.  Indexing
-Create index:
-
-js
+##  Indexing
+- Create index:
+```js
 db.collection.createIndex({name: 1})
-List indexes:
+```
 
-js
+- List indexes:
+```js
 db.collection.getIndexes()
-Drop index:
+```
 
-js
+- Drop index:
+```js
 db.collection.dropIndex("name_1")
-4. User & Role Management
-Create user:
+```
 
-js
+---
+
+## User & Role Management
+- Create user:
+```js
 db.createUser({
   user: "admin",
   pwd: "password",
   roles: ["readWrite", "dbAdmin"]
 })
-List users:
+```
 
-js
+- List users:
+```js
 show users
-5.  Administrative & Utility
-Drop database:
+```
 
-js
+---
+
+## Administrative & Utility
+- Drop database:
+```js
 db.dropDatabase()
-Drop collection:
+```
 
-js
+- Drop collection:
+```js
 db.collection.drop()
-Server status:
+```
 
-js
+- Server status:
+```js
 db.serverStatus()
+```
+
+---
