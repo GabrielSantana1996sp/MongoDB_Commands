@@ -29,6 +29,3 @@ db.commands.insertMany([
   {category: "Admin", name: "Server status", code: "db.serverStatus()"},
   {category: "Admin", name: "Current operations", code: "db.currentOp()"}
 ])
-Use mongoexport, from create .json (text).
-
-Use mongodump, from create .bson (bin).
