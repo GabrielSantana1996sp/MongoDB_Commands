@@ -1,8 +1,10 @@
+---
+
 #  MongoDB Commands & Syntax
 
 ---
 
-## Basic Commands
+## 🔹 Basic Commands
 
 ### 1. Connection and Database
 - Show available databases:
@@ -51,6 +53,26 @@ db.collection.find({age: {$gt: 20}})
 db.collection.findOne({name: "Gabriel"})
 ```
 
+- Count documents:
+```js
+db.collection.countDocuments({status: "active"})
+```
+
+- Limit results:
+```js
+db.collection.find().limit(5)
+```
+
+- Skip results (pagination):
+```js
+db.collection.find().skip(10).limit(5)
+```
+
+- Sort results:
+```js
+db.collection.find().sort({age: -1})
+```
+
 ---
 
 ### 4. Update
@@ -67,6 +89,23 @@ db.collection.updateOne(
 db.collection.updateMany(
   {age: {$lt: 18}},
   {$set: {status: "minor"}}
+)
+```
+
+- Replace document:
+```js
+db.collection.replaceOne(
+  {name: "Gabriel"},
+  {name: "Gabriel", age: 27, status: "active"}
+)
+```
+
+- Upsert (update or insert if not exists):
+```js
+db.collection.updateOne(
+  {name: "Lucas"},
+  {$set: {age: 22}},
+  {upsert: true}
 )
 ```
 
@@ -98,12 +137,13 @@ db.runCommand({ping: 1})
 
 ---
 
-## Query Operators
+##  Query Operators
 
 ### Comparison
 ```js
 {age: {$gte: 18}}          // greater or equal
 {age: {$in: [18, 21, 25]}} // in list
+{age: {$lte: 30}}          // less than or equal
 ```
 
 ### Logical
@@ -116,6 +156,13 @@ db.runCommand({ping: 1})
 ```js
 {field: {$exists: true}}
 {field: {$type: "string"}}
+```
+
+### Extra Operators
+```js
+{age: {$ne: 18}}                 // not equal
+{age: {$nin: [18, 21, 25]}}      // not in list
+{name: {$regex: "^G"}}           // regex pattern
 ```
 
 ---
@@ -159,7 +206,7 @@ db.collection.dropIndex("name_1")
 
 ---
 
-## User & Role Management
+##  User & Role Management
 - Create user:
 ```js
 db.createUser({
@@ -174,9 +221,14 @@ db.createUser({
 show users
 ```
 
+- Drop user:
+```js
+db.dropUser("admin")
+```
+
 ---
 
-## Administrative & Utility
+##  Administrative & Utility
 - Drop database:
 ```js
 db.dropDatabase()
@@ -187,9 +239,19 @@ db.dropDatabase()
 db.collection.drop()
 ```
 
+- Rename collection:
+```js
+db.collection.renameCollection("newCollectionName")
+```
+
 - Server status:
 ```js
 db.serverStatus()
+```
+
+- Current operations:
+```js
+db.currentOp()
 ```
 
 ---
