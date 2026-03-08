@@ -3,7 +3,7 @@ MongoDB_syntax
 
 ---
 
-# 📌 MongoDB Basic Commands
+# MongoDB Basic Commands
 
 ## 1. Connection and Database
 - Show available databases:
