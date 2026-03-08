@@ -1,0 +1,34 @@
+db.commands.find({category: "Queries"})
+
+db.commands.insertMany([
+  {category: "Connection", name: "Show databases", code: "show dbs"},
+  {category: "Connection", name: "Use database", code: "use databaseName"},
+  {category: "Connection", name: "Show collections", code: "show collections"},
+  {category: "Data Insertion", name: "Insert one", code: "db.collection.insertOne({name: 'Gabriel', age: 25})"},
+  {category: "Data Insertion", name: "Insert many", code: "db.collection.insertMany([{name: 'Ana'}, {name: 'Carlos'}])"},
+  {category: "Queries", name: "Find all", code: "db.collection.find()"},
+  {category: "Queries", name: "Find with filter", code: "db.collection.find({age: {$gt: 20}})"},
+  {category: "Queries", name: "Find one", code: "db.collection.findOne({name: 'Gabriel'})"},
+  {category: "Queries", name: "Count documents", code: "db.collection.countDocuments({status: 'active'})"},
+  {category: "Update", name: "Update one", code: "db.collection.updateOne({name: 'Gabriel'}, {$set: {age: 26}})"},
+  {category: "Update", name: "Update many", code: "db.collection.updateMany({age: {$lt: 18}}, {$set: {status: 'minor'}})"},
+  {category: "Update", name: "Replace one", code: "db.collection.replaceOne({name: 'Gabriel'}, {name: 'Gabriel', age: 27, status: 'active'})"},
+  {category: "Update", name: "Upsert", code: "db.collection.updateOne({name: 'Lucas'}, {$set: {age: 22}}, {upsert: true})"},
+  {category: "Deletion", name: "Delete one", code: "db.collection.deleteOne({name: 'Carlos'})"},
+  {category: "Deletion", name: "Delete many", code: "db.collection.deleteMany({status: 'inactive'})"},
+  {category: "Aggregation", name: "Pipeline example", code: "db.collection.aggregate([{$match: {status: 'active'}}, {$group: {_id: '$city', total: {$sum: 1}}}, {$sort: {total: -1}}])"},
+  {category: "Indexing", name: "Create index", code: "db.collection.createIndex({name: 1})"},
+  {category: "Indexing", name: "List indexes", code: "db.collection.getIndexes()"},
+  {category: "Indexing", name: "Drop index", code: "db.collection.dropIndex('name_1')"},
+  {category: "User Management", name: "Create user", code: "db.createUser({user: 'admin', pwd: 'password', roles: ['readWrite','dbAdmin']})"},
+  {category: "User Management", name: "Show users", code: "show users"},
+  {category: "User Management", name: "Drop user", code: "db.dropUser('admin')"},
+  {category: "Admin", name: "Drop database", code: "db.dropDatabase()"},
+  {category: "Admin", name: "Drop collection", code: "db.collection.drop()"},
+  {category: "Admin", name: "Rename collection", code: "db.collection.renameCollection('newCollectionName')"},
+  {category: "Admin", name: "Server status", code: "db.serverStatus()"},
+  {category: "Admin", name: "Current operations", code: "db.currentOp()"}
+])
+Use mongoexport, from create .json (text).
+
+Use mongodump, from create .bson (bin).
