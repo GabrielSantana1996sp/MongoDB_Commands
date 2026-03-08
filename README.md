@@ -96,5 +96,78 @@ db.stats()
 ```js
 db.runCommand({ping: 1})
 ```
+MongoDB Query Operators & Advanced Commands
 
----
+1. Query Operators
+ Comparison
+js
+{age: {$gte: 18}}          // greater or equal
+{age: {$in: [18, 21, 25]}} // in list
+ Logical
+js
+{$and: [{age: {$gt: 18}}, {status: "active"}]}
+{$or: [{city: "SP"}, {city: "RJ"}]}
+ Element
+js
+{field: {$exists: true}}
+{field: {$type: "string"}}
+2.  Aggregation Framework
+Pipeline Example
+js
+db.collection.aggregate([
+  {$match: {status: "active"}},
+  {$group: {_id: "$city", total: {$sum: 1}}},
+  {$sort: {total: -1}}
+])
+Useful Stages
+$match → filter documents
+
+$group → group and aggregate
+
+$sort → order results
+
+$project → reshape documents
+
+$lookup → perform joins
+
+$unwind → expand arrays
+
+3.  Indexing
+Create index:
+
+js
+db.collection.createIndex({name: 1})
+List indexes:
+
+js
+db.collection.getIndexes()
+Drop index:
+
+js
+db.collection.dropIndex("name_1")
+4. User & Role Management
+Create user:
+
+js
+db.createUser({
+  user: "admin",
+  pwd: "password",
+  roles: ["readWrite", "dbAdmin"]
+})
+List users:
+
+js
+show users
+5.  Administrative & Utility
+Drop database:
+
+js
+db.dropDatabase()
+Drop collection:
+
+js
+db.collection.drop()
+Server status:
+
+js
+db.serverStatus()
