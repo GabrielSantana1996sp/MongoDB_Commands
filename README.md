@@ -2,7 +2,7 @@
 
 ---
 
-## 🔹 Basic Commands
+## Basic Commands
 
 ### 1. Connection and Database
 - Show available databases:
@@ -98,7 +98,7 @@ db.runCommand({ping: 1})
 
 ---
 
-## 🔎 Query Operators
+## Query Operators
 
 ### Comparison
 ```js
